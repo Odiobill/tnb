@@ -1,0 +1,51 @@
+<h2>Home</h2>
+
+<div class="container" ng-show="data.view == 0">
+	<div class="bs-docs-section clearfix">
+		<div class="row">
+			<div class="col-xs-6">
+				<ul class="list-inline employees">
+					<li ng-repeat="employee in people | filter:{present:true} | orderBy:'name'">
+						<button class="btn btn-sm btn-default" ng-click="checkOut(employee)">
+							{{ employee.name }}
+							<span class="badge">{{ employee.itime | date:'H:mm' }}</span>
+						</button>
+					</li>
+				</ul>
+			</div>
+			<div class="col-xs-6">
+				<ul class="list-inline employees">
+					<li ng-repeat="employee in people | filter:{present:false} | orderBy:'name'">
+						<button class="btn btn-sm btn-default" ng-click="checkIn(employee)">
+							{{ employee.name }}
+							<span class="badge">{{ employee.otime | date:'H:mm' }}</span>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+	
+<div class="container" ng-show="data.view == 1">
+	<div class="bs-docs-section clearfix">
+		<ul class="list-inline employees">
+			<li ng-repeat="employee in people | filter:{present:true} | orderBy:'name'">
+				<button class="btn btn-sm btn-default" ng-click="checkOut(employee)">
+					{{ employee.name }}
+					<span class="badge">{{ employee.itime | date:'H:mm' }}</span>
+				</button>
+			</li>
+		</ul>
+		<hr />
+		<ul class="list-inline employees">
+			<li ng-repeat="employee in people | filter:{present:false} | orderBy:'name'">
+				<button class="btn btn-sm btn-default" ng-click="checkIn(employee)">
+					{{ employee.name }}
+					<span class="badge">{{ employee.otime | date:'H:mm' }}</span>
+				</button>
+			</li>
+		</ul>
+	</div>
+</div>
+	

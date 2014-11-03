@@ -1,0 +1,17 @@
+{
+  "name": "TheNextBoard",
+  "description": "Very simple check-in/out system based on angularjs, firebase and bootstrap.",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap-css-only": "3.2.x",
+    "animate.css": "3.2.x",
+    "angular": "1.2.x",
+    "angular-route": "1.2.x",
+    "firebase": "~1.0.x",
+    "firebase-simple-login": "~1.6.x",
+    "angular-bootstrap": "~0.11.x",
+    "angular-animate": "~1.2.x",
+    "angularfire": "~0.8.x"
+  }
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+	<head>
+		<meta charset="utf-8">
+		<title>The Next Board</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="bower_components/bootstrap-css-only/css/bootstrap.min.css" media="screen">
+		<link rel="stylesheet" href="bower_components/animate.css/animate.min.css" media="screen">
+		<style>
+			ul.employees > li {
+				margin-bottom: 2px;
+			}
+			ul.employees > li.ng-enter {
+				-webkit-animation: bounceIn 1s;
+				-moz-animation: bounceIn 1s;
+				-ms-animation: bounceIn 1s;
+				animation: bounceIn 1s;
+			}
+			ul.employees > li.ng-leave {
+				-webkit-animation: bounceOut 1s;
+				-moz-animation: bounceOut 1s;
+				-ms-animation: bounceOut 1s;
+				animation: bounceOut 1s;
+			}
+		</style>
+	</head>
+	<body ng-cloak>
+		<div class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarCtrl">
+			<div class="container">
+				<div class="navbar-header">
+					<a href="#/home" class="navbar-brand">
+						<img src="img/logo.png" alt="AMS-IX" />
+						The Next Board
+					</a>
+					<button class="navbar-toggle" type="button" ng-init="navbarCollapsed=true" ng-click="navbarCollapsed = !navbarCollapsed">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="navbar-collapse collapse navbar-right" collapse="navbarCollapsed">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a class="dropdown-toggle" toggle="dropdown">View <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="" ng-click="data.view = 0">
+									Left &amp; Right
+									<i ng-show="data.view == 0" class="glyphicon glyphicon-check"></i>
+								</a></li>
+								<li><a href="" ng-click="data.view = 1">
+									Up &amp; Down
+									<i ng-show="data.view == 1" class="glyphicon glyphicon-check"></i>
+								</a></li>
+							</ul>
+						</li>
+						<li ng-hide-auth>
+							<a ng-click="loginModal()">Login</a>
+						</li>
+						<li class="dropdown" ng-show-auth>
+							<a class="dropdown-toggle" toggle="dropdown">My TNB <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="#/employees" ng-click="navbarCollapsed = true">Employees</a></li>
+								<li class="divider"></li>
+								<li><a ng-click="logout()">Logout</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div ng-view></div>
+
+		<script src="bower_components/angular/angular.min.js"></script>
+		<script src="bower_components/angular-route/angular-route.min.js"></script>
+		<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+		<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+		<script src="bower_components/firebase/firebase.js"></script>
+		<script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
+		<script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+
+		<script src="js/app.js"></script>
+		<script src="js/config.js"></script>
+		<script src="js/controllers.js"></script>
+		<script src="js/decorators.js"></script>
+		<script src="js/directives.js"></script>
+		<script src="js/filters.js"></script>
+		<script src="js/routes.js"></script>
+		<script src="js/services.js"></script>
+		<script src="js/firebase.utils.js"></script>
+		<script src="js/simpleLogin.js"></script>
+		<script src="js/changeEmail.js"></script>
+
+		<script type="text/ng-template" id="loginModal.html">
+			<div class="modal-header">
+				<button ng-click="close(false)" class="close" aria-hidden="true">×</button>
+				<h1 class="brand text-center">The Next Board</h1>
+			</div>
+			<div class="modal-body">
+				<form class="form-compact">
+					<input type="email" class="form-control" name="email" placeholder="E-Mail Address" ng-model="email" required autofocus>
+					<input type="password" class="form-control" name="pass" placeholder="Password" ng-model="pass" required>
+					<input type="password" class="form-control" name="confirm" placeholder="Confirm Password" ng-model="confirm" ng-show="createMode" ng-cloak>
+				</form>
+				<p ng-show="err" class="error">{{err}}</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-lg btn-primary btn-block" ng-click="login(email, pass)" ng-hide="createMode">Sign in</button>
+				<button class="btn btn-lg btn-primary btn-block" ng-click="createMode = true" ng-hide="createMode">Sign up</button>
+				<button class="btn btn-lg btn-primary btn-block" ng-cloak ng-show="createMode" ng-click="createAccount(email, pass, confirm)">Register</button>
+				<button class="btn btn-lg btn-primary btn-block" ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</button>
+			</div>
+		</script>
+
+	</body>
+</html>
