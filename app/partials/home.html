@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-xs-6">
 				<ul class="list-inline employees leftright left">
-					<li><button class="btn btn-sm btn-info">IN: {{ filteredleft.length }}</button></li>
+					<li><button class="btn btn-sm btn-success">IN: {{ filteredleft.length }}</button></li>
 					<li ng-repeat="employee in filteredleft = (people | filter:{present:true} | orderBy:'name')">
 						<button class="btn btn-sm btn-default" ng-click="checkOut(employee)">
 							{{ employee.name }}
@@ -30,7 +30,7 @@
 <div class="container" ng-show="data.view == 1">
 	<div class="bs-docs-section clearfix">
 		<ul class="list-inline employees updown up">
-			<li><button class="btn btn-sm btn-info">IN: {{ filteredup.length }}</button></li>
+			<li><button class="btn btn-sm btn-success">IN: {{ filteredup.length }}</button></li>
 			<li ng-repeat="employee in filteredup = (people | filter:{present:true} | orderBy:'name')">
 				<button class="btn btn-sm btn-default" ng-click="checkOut(employee)">
 					{{ employee.name }}

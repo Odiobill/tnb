@@ -1,0 +1,10 @@
+{
+	"name": "The Next Board",
+	"icons": [{
+		"src": "img/icon.png",
+		"sizes": "128x128",
+		"density": 2
+	}],
+	"start_url": "index.html",
+	"display": "standalone"
+}
