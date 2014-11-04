@@ -8,19 +8,37 @@
 		<link rel="stylesheet" href="bower_components/animate.css/animate.min.css" media="screen">
 		<style>
 			ul.employees > li {
-				margin-bottom: 2px;
+				margin-bottom: 3px;
 			}
 			ul.employees > li.ng-enter {
-				-webkit-animation: bounceIn 1s;
-				-moz-animation: bounceIn 1s;
-				-ms-animation: bounceIn 1s;
-				animation: bounceIn 1s;
+				-webkit-animation: rubberBand 2s;
+				-moz-animation: rubberBand 2s;
+				-ms-animation: rubberBand 2s;
+				animation: rubberBand 2s;
 			}
-			ul.employees > li.ng-leave {
-				-webkit-animation: bounceOut 1s;
-				-moz-animation: bounceOut 1s;
-				-ms-animation: bounceOut 1s;
-				animation: bounceOut 1s;
+			ul.employees.leftright.left > li.ng-leave {
+				-webkit-animation: bounceOutRight 1s;
+				-moz-animation: bounceOutRight 1s;
+				-ms-animation: bounceOutRight 1s;
+				animation: bounceOutRight 1s;
+			}
+			ul.employees.leftright.right > li.ng-leave {
+				-webkit-animation: bounceOutLeft 1s;
+				-moz-animation: bounceOutLeft 1s;
+				-ms-animation: bounceOutLeft 1s;
+				animation: bounceOutLeft 1s;
+			}
+			ul.employees.updown.up > li.ng-leave {
+				-webkit-animation: bounceOutDown 1s;
+				-moz-animation: bounceOutDown 1s;
+				-ms-animation: bounceOutDown 1s;
+				animation: bounceOutDown 1s;
+			}
+			ul.employees.updown.down > li.ng-leave {
+				-webkit-animation: bounceOutUp 1s;
+				-moz-animation: bounceOutUp 1s;
+				-ms-animation: bounceOutUp 1s;
+				animation: bounceOutUp 1s;
 			}
 		</style>
 	</head>
@@ -30,7 +48,7 @@
 				<div class="navbar-header">
 					<a href="#/home" class="navbar-brand">
 						<img src="img/logo.png" alt="AMS-IX" />
-						The Next Board
+						Presence Board
 					</a>
 					<button class="navbar-toggle" type="button" ng-init="navbarCollapsed=true" ng-click="navbarCollapsed = !navbarCollapsed">
 						<span class="icon-bar"></span>

@@ -1,30 +1,50 @@
-<h2>Employees</h2>
-
+<h1>&nbsp;</h1>
 <div class="container">
 	<div class="bs-docs-section clearfix">
 		<div class="row">
 			<div class="col-md-7">
-				<ul class="list-unstyled employees">
+				<ul class="list-inline employees">
 					<li ng-repeat="employee in people | orderBy:'name'">
-						<button ng-hide="data.editing == employee.$id" class="btn btn-sm btn-default" ng-click="data.editing = employee.$id">
+						<button  class="btn btn-sm btn-default" ng-click="data.editing = employee">
 							<i class="glyphicon glyphicon-edit"></i>
 							{{ employee.name }}
 						</button>
-						<div ng-show="data.editing == employee.$id">
-							<a href="" ng-click="delete(employee)"><i class="glyphicon glyphicon-trash"></i></a>
-							<input type="text" size="30" ng-model="employees[employee.$id].name" />
-							<a href="" ng-click="save(employee)"><i class="glyphicon glyphicon-save"></i></a>
-							<a href="" ng-click="data.editing = 0"><i class="glyphicon glyphicon-remove"></i></a>
-						</div>
 					</li>
 				</ul>
 			</div>
 			<div class="col-md-5">
 				<div class="jumbotron">
-					<h3>New faces around?</h3>
-					<p>Insert the name of the new employee:</p>
-					<p><input type="text" size="30" ng-model="newguy.name" /></p>
-					<p><a class="btn btn-primary btn-lg" href="" role="button" ng-click="register()" ng-disabled="! newguy.name">Add employee</a></p>
+					<div ng-hide="data.editing">
+						<h3>New faces around?</h3>
+						<p>Insert the name of the new employee:</p>
+						<p><input type="text" size="30" ng-model="newguy.name" /></p>
+						<p>
+							<button class="btn btn-primary btn-lg" ng-click="register()" ng-disabled="! newguy.name">
+								Add employee
+							</button>
+						</p>
+					</div>
+					<div ng-show="data.editing">
+						<h2>
+							<button class="btn btn-info btn-sm" ng-click="data.editing = 0">
+								<i class="glyphicon glyphicon-remove"></i>
+							</button>
+							Edit name:
+						</h2>
+						<input type="text" size="30" ng-model="employees[data.editing.$id].name" />
+						<button class="btn btn-success btn-sm" ng-click="save(data.editing)">
+							<i class="glyphicon glyphicon-save"></i>
+							Save
+						</button>
+						<h3>Warning:</h3>
+						<p>
+							<button class="btn btn-danger btn-sm" ng-click="delete(data.editing)">
+								<i class="glyphicon glyphicon-trash"></i>
+								Delete
+							</button>
+							Pressing this button will remove {{ employees[data.editing.$id].name }}.
+						</p>
+					</div>
 				</div>
 				<a class="btn btn-info" href="#/home" role="button">
 					<i class="glyphicon glyphicon-arrow-left"></i>

@@ -1,11 +1,11 @@
-<h2>Home</h2>
-
+<h1>&nbsp;</h1>
 <div class="container" ng-show="data.view == 0">
 	<div class="bs-docs-section clearfix">
 		<div class="row">
 			<div class="col-xs-6">
-				<ul class="list-inline employees">
-					<li ng-repeat="employee in people | filter:{present:true} | orderBy:'name'">
+				<ul class="list-inline employees leftright left">
+					<li><button class="btn btn-sm btn-info">IN: {{ filteredleft.length }}</button></li>
+					<li ng-repeat="employee in filteredleft = (people | filter:{present:true} | orderBy:'name')">
 						<button class="btn btn-sm btn-default" ng-click="checkOut(employee)">
 							{{ employee.name }}
 							<span class="badge">{{ employee.itime | date:'H:mm' }}</span>
@@ -14,8 +14,9 @@
 				</ul>
 			</div>
 			<div class="col-xs-6">
-				<ul class="list-inline employees">
-					<li ng-repeat="employee in people | filter:{present:false} | orderBy:'name'">
+				<ul class="list-inline employees leftright right">
+					<li><button class="btn btn-sm btn-warning">OUT: {{ filteredright.length }}</button></li>
+					<li ng-repeat="employee in filteredright = (people | filter:{present:false} | orderBy:'name')">
 						<button class="btn btn-sm btn-default" ng-click="checkIn(employee)">
 							{{ employee.name }}
 							<span class="badge">{{ employee.otime | date:'H:mm' }}</span>
@@ -26,11 +27,11 @@
 		</div>
 	</div>
 </div>
-	
 <div class="container" ng-show="data.view == 1">
 	<div class="bs-docs-section clearfix">
-		<ul class="list-inline employees">
-			<li ng-repeat="employee in people | filter:{present:true} | orderBy:'name'">
+		<ul class="list-inline employees updown up">
+			<li><button class="btn btn-sm btn-info">IN: {{ filteredup.length }}</button></li>
+			<li ng-repeat="employee in filteredup = (people | filter:{present:true} | orderBy:'name')">
 				<button class="btn btn-sm btn-default" ng-click="checkOut(employee)">
 					{{ employee.name }}
 					<span class="badge">{{ employee.itime | date:'H:mm' }}</span>
@@ -38,8 +39,9 @@
 			</li>
 		</ul>
 		<hr />
-		<ul class="list-inline employees">
-			<li ng-repeat="employee in people | filter:{present:false} | orderBy:'name'">
+		<ul class="list-inline employees updown down">
+			<li><button class="btn btn-sm btn-warning">OUT: {{ filtereddown.length }}</button></li>
+			<li ng-repeat="employee in filtereddown = (people | filter:{present:false} | orderBy:'name')">
 				<button class="btn btn-sm btn-default" ng-click="checkIn(employee)">
 					{{ employee.name }}
 					<span class="badge">{{ employee.otime | date:'H:mm' }}</span>
@@ -48,4 +50,4 @@
 		</ul>
 	</div>
 </div>
-	
+

@@ -98,7 +98,6 @@ angular.module('myApp.controllers', ['firebase.utils', 'ui.bootstrap'])
 
 		$scope.register = function() {
 			console.log('called register()');
-			console.log('ooo');
 			if ($scope.newguy && $scope.newguy.name) {
 				console.log('length: ', $scope.newguy.name.length);
 				var now = new Date();
@@ -125,10 +124,11 @@ angular.module('myApp.controllers', ['firebase.utils', 'ui.bootstrap'])
 		}
 
 		$scope.delete = function(employee) {
-			console.log('deleting ' + employee.$id);
+			console.log('deleting ' + employee);
 			$scope.people.$remove(employee).then(function(ref) {
 				var id = ref.name();
 				console.log('deleted record with id ' + ref.name());
+				$scope.data.editing = 0;
 			});
 		}
 	}]);
